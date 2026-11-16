@@ -36,7 +36,8 @@ def main() -> None:
                                else [str(a.get("default", "false"))]),
                 })
         labels.append({"name": name, "color": "#808080" if name == tax.ignore else COLORS[i % len(COLORS)],
-                       "attributes": attrs})
+                       # CVAT bản mới bắt buộc có "type"; lab chỉ dùng box chữ nhật.
+                       "attributes": attrs, "type": "rectangle"})
     text = json.dumps(labels, ensure_ascii=False, indent=2)
     out = ROOT / "cvat" / ("labels_final.json" if args.final else "labels_generated.json")
     out.parent.mkdir(exist_ok=True)

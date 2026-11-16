@@ -34,7 +34,28 @@ Kết quả trong `cvat/labels_generated.json`: `can_review` ở cả 8 lớp c�
 Lần đầu (commit `1b5bb40`) file này được sửa tay; sau khi sửa script, chạy lại `make_cvat_labels.py` cho ra file **giống hệt** bản sửa tay.
 Lệnh `--final` ở Pha 5 dùng cùng đoạn code nên `cvat/labels_final.json` cũng đúng định dạng.
 
-**Kiểm lại:**
+### 3. Thêm `"type": "rectangle"` cho mỗi nhãn
+
+**Lỗi:** sau bước 2, CVAT báo tiếp:
+
+```
+Label "car": unknown label type "undefined"
+```
+
+**Nguyên nhân:** CVAT bản đang dùng bắt buộc mỗi nhãn có trường `type`; script không ghi trường này.
+
+**Cách sửa:** script ghi thêm `"type": "rectangle"` cho cả 9 nhãn (lab chỉ vẽ box chữ nhật):
+
+```diff
+-                       "attributes": attrs})
++                       # CVAT bản mới bắt buộc có "type"; lab chỉ dùng box chữ nhật.
++                       "attributes": attrs, "type": "rectangle"})
+```
+
+Sau khi sửa, `cvat/labels_generated.json` **giống hệt** `cvat/labels_local.json` (commit `1537b95`, một thành viên đã sửa tay
+cho CVAT Local), so sánh bằng `json.load(a) == json.load(b)` → `True`.
+
+**Kiểm lại (sau cả bước 2 và 3):**
 
 - Chạy lại `python scripts/make_cvat_labels.py`: schema hợp lệ, `cvat/labels_generated.json` không còn mảng `"values": []` nào.
 - Dán lại vào CVAT (Labels → Raw) không còn báo lỗi.
