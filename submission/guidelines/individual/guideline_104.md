@@ -2,7 +2,7 @@
 
 - **Phiên bản:** v1.0
 - **Ngày:** 16/11/2026
-- **Người thực hiện:** Bạch Đăng Ngọc Tuấn 104
+- **Người thực hiện:** Thành viên 104
 - **Công cụ:** CVAT (xuất định dạng COCO 1.0)
 
 ---
