@@ -1,0 +1,4 @@
+{
+  "kind": "editorial",
+  "summary": "Làm rõ quy tắc và ví dụ ở v1.1 dựa trên 1.449 ca IAA (R-01/R-18 ảnh rỗng, R-07 pickup=truck, R-17 tuk_tuk/motorcycle/bicycle, bus/van, R-05/R-11 truncated, ước lượng occluded_level 4 phần và ranh giới ignore_region R-13), giữ nguyên taxonomy v1.0."
+}
